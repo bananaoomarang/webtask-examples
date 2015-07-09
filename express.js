@@ -1,29 +1,29 @@
+/* express app as a webtask */
+
 var Express = require('express');
-var webtask = require('webtask-tools');
+var Webtask = require('webtask-tools');
 var app = Express();
 
-app.use(require('body-parser'));
-
 // POST
-app.post('/', function (req, res) {
-    res.json({ id: 1 })
+app.post('*', function (req, res) {
+    res.send(200);
 });
 
 // GET
-app.get('/', function (req, res) {
-    res.json({ id: 1 })
+app.get('*', function (req, res) {
+    res.json({ id: 1 });
 });
 
 // PUT
-app.put('/', function (req, res) {
-    res.json({ id: 1 })
+app.put('*', function (req, res) {
+    res.json({ id: 1 });
 });
 
 // DEL
-app.del('/', function (req, res) {
+app.del('*', function (req, res) {
     res.json({ id: 1 })
 });
 
-// Expose this express app as a webtask-compatible function
+// expose this express app as a webtask-compatible function
 
-module.exports = webtask.fromExpress(app);
+module.exports = Webtask.fromExpress(app);
